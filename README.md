@@ -131,5 +131,5 @@ This project is open-source and available.
 
 ---
 
-Enjoy automated crypto insights! 🚀
+Enjoy automated crypto insights! 
 
