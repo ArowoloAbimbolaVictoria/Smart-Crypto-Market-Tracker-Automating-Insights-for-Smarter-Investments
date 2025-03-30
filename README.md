@@ -1,74 +1,88 @@
 # Smart-Crypto-Market-Tracker-Automating-Insights-for-Smarter-Investments
 A Python Project That Tracks Market Trends and Sends Daily Reports
-# Crypto Data Fetcher
+# Crypto Data insights
 
 ## Overview
-This Python script fetches real-time cryptocurrency data from the CoinGecko API. It identifies the top 10 cryptocurrencies to buy (highest gainers) and the top 10 to sell (highest losers) based on the last 24-hour price change percentage. The data is saved in CSV format and emailed daily at a scheduled time.
+This Python script fetches real-time cryptocurrency data from the CoinGecko API. It identifies the top 10 cryptocurrencies to buy (highest gainers) and the top 10 to sell (highest losers) based on the last 24-hour price change percentage.It generates visualizations, and sends email reports daily to a list of recipients at a scheduled time.
 
-## Features
-- Fetches real-time cryptocurrency data from CoinGecko API.
-- Saves the complete dataset as a CSV file.
-- Identifies the top 10 cryptocurrencies with the highest price increase.
-- Identifies the top 10 cryptocurrencies with the highest price decrease.
-- Sends an email report with the dataset attached.
-- Runs automatically every day at 8 AM.
 
-## Requirements
-Ensure you have the following dependencies installed:
+## ✨ Features
+- **Fetch Live Crypto Data**: Automatically retrieves the latest cryptocurrency market data in csv.
+- **Analyze Market Trends**: Identifies the **top 10 gainers** and **top 10 losers** in the market.
+- **Generate Visual Reports**: Creates bar chart visualizations for both gainers and losers.
+- **Automated Email Reports**: Sends visual reports to recipients via email.
 
-```bash
-pip install requests pandas schedule smtplib email
+## 🚀 How It Works
+1. **Fetches Data**: Retrieves the latest crypto data using `dataHandler`.
+2. **Processes Top Movers**: Identifies the top gainers and losers.
+3. **Creates Visualizations**: Generates bar charts for market trends.
+4. **Sends Email Reports**: Emails the visualizations to recipients.
+
+## 📂 Project Structure
+```
+📦 crypto-market-visualizer
+├── dataHandler.py        # Handles data fetching and processing
+├── visualizationHandler.py # Generates visual reports
+├── personnelHandler.py   # Manages recipient email list
+├── emailHandler.py       # Sends emails with visual reports
+├── application.py        # Main script to execute the process
+├── Personnel.csv         # List of email recipients
+└── README.md             # Documentation
 ```
 
-## How It Works
-### 1. Fetching Data
-The script queries the CoinGecko API for the top 250 cryptocurrencies based on market cap. It extracts relevant fields such as:
-- `id`
-- `current_price`
-- `market_cap`
-- `price_change_percentage_24h`
-- `all-time high (ath)`
-- `all-time low (atl)`
+## 🛠️ Setup & Installation
+### 1️⃣ Prerequisites
+Ensure you have **Python 3.x** installed, along with the required libraries:
 
-### 2. Processing Data
-- The script identifies the top 10 gainers and losers based on the 24-hour price change percentage.
-- The complete dataset is saved in a CSV file.
-- Separate CSV files are created for the top 10 gainers and top 10 losers.
+```sh
+pip install pandas matplotlib requests smtplib email
+```
 
-### 3. Sending Email
-- An email is sent to the user with a summary of the top gainers and losers.
-- The CSV file is attached to the email.
+### 2️⃣ Clone the Repository
+```sh
+git clone https://github.com/your-username/crypto-market-visualizer.git
+cd crypto-market-visualizer
+```
 
-### 4. Scheduling
-- The script is scheduled to run daily at 8 AM using the `schedule` library.
+### 3️⃣ Configure Email Settings
+Edit `emailHandler.py` and update the SMTP settings with your email credentials.
 
-## Setup Instructions
-1. **Update Email Credentials**
-   Modify the `send_mail` function with your sender email and password.
+```python
+SMTP_SERVER = "smtp.your-email.com"
+SMTP_PORT = 587
+EMAIL_ADDRESS = "your-email@example.com"
+EMAIL_PASSWORD = "your-password"
+```
 
-2. **Run the script**
-   ```bash
-   python crypto_data_fetcher.py
-   ```
+### 4️⃣ Run the Application
+Execute the main script to fetch data, generate visualizations, and send emails.
+```sh
+python application.py
+```
 
-3. **Automate Execution**
-   - To run it automatically every day, consider setting up a cron job (Linux/macOS) or Task Scheduler (Windows).
+## 📧 Email Report Example
+Your email recipients will receive a message like this:
+```
+Subject: 📊 Today's Crypto Trends Are In!
 
+Hello [Recipient Name],
 
-## Troubleshooting
-- **Invalid Credentials**: Ensure that you enable "Less secure apps" access for your email.
-- **API Limitations**: The CoinGecko API has rate limits; ensure you are not exceeding them.
-- **Email Not Sent**: Check SMTP settings and credentials.
+Get the latest insights on the market’s top gainers and losers with a quick snapshot of today’s trends. 
 
-## Future Improvements
-- Integrate a database for historical tracking.
-- Implement Telegram or WhatsApp alerts.
-- Add more filtering options.
+Attached are the latest crypto market visualizations (Top Gainers & Top Losers).
 
-## License
-This project is open-source and available.
+Best,
+Your Automated Crypto Bot 🤖
+```
+
+## 🛠️ Customization
+- Modify `dataHandler.py` to change data sources.
+- Adjust `visualizationHandler.py` for different chart styles.
+- Edit `Personnel.csv` to update email recipients.
+
+## 🤝 Contributing
+Pull requests are welcome! Feel free to open an issue or suggest improvements.
 
 ---
-
-Enjoy automated crypto insights! 
+🚀 **Stay ahead in the crypto market with automated insights!**
 
